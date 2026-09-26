@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestieMatch — Fun Friendship Quiz 💕</title>
+<meta name="description" content="Take the fun BestieMatch friendship quiz with your best friend and discover your friendship vibe. Free, colorful and easy to share.">
+<meta name="keywords" content="friendship quiz, best friend quiz, friendship compatibility, fun quiz, bestiematch">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:title" content="BestieMatch — Fun Friendship Quiz 💕">
+<meta property="og:description" content="Answer fun questions with your friend and discover your friendship vibe!">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<style>
+*{box-sizing:border-box}
+:root{--pink:#ff4f9a;--purple:#7c4dff;--blue:#35b8ff;--ink:#29213a}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#ff6fae,#9c6cff 45%,#40c9ff);min-height:100vh}
+body:before,body:after{content:"";position:fixed;border-radius:50%;filter:blur(3px);opacity:.3;z-index:-1}
+body:before{width:300px;height:300px;background:#fff;top:-100px;left:-90px}
+body:after{width:350px;height:350px;background:#ffe46b;bottom:-150px;right:-110px}
+nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.88);backdrop-filter:blur(15px);box-shadow:0 3px 20px #4b237015}
+.nav-inner{max-width:1000px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:900;font-size:21px;color:#7547ff;text-decoration:none}
+nav a{color:#4b4156;text-decoration:none;font-weight:700;margin-left:16px;font-size:14px}
+.container{max-width:760px;margin:auto;padding:24px 16px 55px}
+.card{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border:1px solid #fff9;border-radius:30px;padding:30px;box-shadow:0 25px 60px #2d145033;margin-top:18px;animation:pop .5s ease}
+@keyframes pop{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.logo{text-align:center;font-size:62px;animation:float 2s infinite ease-in-out}
+@keyframes float{50%{transform:translateY(-7px) rotate(3deg)}}
+h1{text-align:center;font-size:38px;margin:3px 0 8px;background:linear-gradient(90deg,#ff3f91,#7547ff,#00a9ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{text-align:center;color:#756d82;line-height:1.6}
+.pills{text-align:center;margin:18px 0}.pill{display:inline-block;padding:7px 12px;border-radius:20px;background:#f6edff;margin:4px;font-size:13px;font-weight:bold}
+label.title{display:block;font-weight:bold;margin:17px 0 7px}
+input[type=text]{width:100%;padding:15px 16px;border:2px solid #eadff4;border-radius:15px;font-size:16px;outline:none;background:#fff}
+input[type=text]:focus{border-color:#9c6cff;box-shadow:0 0 0 4px #9c6cff18}
+button{width:100%;border:0;border-radius:16px;padding:16px;margin-top:14px;font-size:17px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(90deg,#ff4f9a,#7c4dff);box-shadow:0 10px 25px #7c4dff35;transition:.2s}
+button:hover{transform:translateY(-2px)}.secondary{background:#f0ebf7;color:#493d59;box-shadow:none}.hidden{display:none}
+.progress-wrap{display:flex;align-items:center;gap:10px;margin-bottom:20px}.progress{height:11px;background:#eee8f5;border-radius:20px;overflow:hidden;flex:1}.progress span{display:block;height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,#ff4f9a,#7c4dff,#35b8ff);transition:.4s}.progress-text{font-size:13px;font-weight:bold;color:#6d6278}
+.question{border-radius:21px;padding:20px;margin:18px 0;background:linear-gradient(135deg,#fff5fb,#f4f0ff);border:2px solid #eee4f7}
+.question h3{margin:0 0 14px;font-size:18px}.option{display:flex;align-items:center;gap:9px;padding:13px;margin:9px 0;border:2px solid #eee7f4;border-radius:14px;background:#fff;cursor:pointer;transition:.2s;font-weight:600}.option:hover{border-color:#b66cff;background:#fcf9ff;transform:translateX(3px)}.option input{accent-color:#8b4dff}
+.error{text-align:center;color:#d93661;font-weight:bold;min-height:20px}
+.result-orb{width:130px;height:130px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:70px;background:linear-gradient(135deg,#fff0f8,#eee5ff);box-shadow:0 15px 35px #8b4dff30}
+.score{text-align:center;font-size:76px;font-weight:900;background:linear-gradient(90deg,#ff3f91,#7c4dff,#00a9ee);-webkit-background-clip:text;background-clip:text;color:transparent;margin:5px}
+.result-title{text-align:center;font-size:28px;margin:6px}.result-text{text-align:center;line-height:1.7;color:#63596e}.bar{height:17px;background:#eee7f5;border-radius:20px;overflow:hidden;margin:22px 0}.fill{height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,#ff4f9a,#7c4dff,#35b8ff);transition:1.2s}
+.names{text-align:center;font-weight:800;color:#6d4bb1}.small{text-align:center;color:#857b8f;font-size:12px;margin-top:20px}
+.info{max-width:760px;margin:18px auto 0;padding:0 16px}.info-card{background:#ffffffee;border-radius:24px;padding:25px;box-shadow:0 15px 40px #2d145022}.info-card h2{margin-top:0;color:#6842bf}.info-card p,.info-card li{line-height:1.65;color:#62586c}
+.heart{position:fixed;font-size:25px;animation:rise 6s linear infinite;opacity:.7;z-index:-1}@keyframes rise{from{transform:translateY(110vh);opacity:0}15%{opacity:.7}to{transform:translateY(-15vh) rotate(360deg);opacity:0}}
+footer{text-align:center;color:#fff;padding:30px 15px;font-size:13px}
+.ad-slot{display:none}
+@media(max-width:600px){h1{font-size:31px}.card{padding:22px;border-radius:24px}.score{font-size:62px}nav a{margin-left:8px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="heart" style="left:8%">💗</div><div class="heart" style="left:27%;animation-delay:1.4s">✨</div><div class="heart" style="left:53%;animation-delay:3s">💕</div><div class="heart" style="left:79%;animation-delay:.8s">💜</div>
+
+<nav><div class="nav-inner"><a class="brand" href="#top">💖 BestieMatch</a><div><a href="#quiz">Quiz</a><a href="#about">About</a><a href="#faq">FAQ</a></div></div></nav>
+
+<main id="top">
+<div class="container" id="quiz">
+<section class="card" id="startCard">
+<div class="logo">💖</div><h1>BestieMatch</h1>
+<p class="subtitle">A colorful, funny friendship quiz for you and your favorite person.</p>
+<div class="pills"><span class="pill">💕 Free</span><span class="pill">✨ 12 Questions</span><span class="pill">🎉 Instant Result</span></div>
+<label class="title" for="name1">👤 Your name</label><input id="name1" type="text" maxlength="30" placeholder="Enter your name">
+<label class="title" for="name2">🫶 Friend's name</label><input id="name2" type="text" maxlength="30" placeholder="Enter friend's name">
+<button onclick="startQuiz()">Let's Find Our Vibe ✨</button>
+<p class="small">Just for fun — this isn't a scientific personality test.</p>
+</section>
+
+<section class="card hidden" id="quizCard">
+<div class="progress-wrap"><div class="progress"><span id="progress"></span></div><div class="progress-text" id="progressText">0/12</div></div>
+<div id="questions"></div><div id="error" class="error"></div>
+<button onclick="calculateResult()">Reveal Our Friendship 💕</button>
+</section>
+
+<section class="card hidden" id="resultCard">
+<div class="result-orb" id="emoji">🎉</div><p class="names" id="names"></p><h1>Your Vibe Score</h1>
+<div class="score" id="score">0%</div><div class="bar"><div class="fill" id="fill"></div></div>
+<h2 class="result-title" id="resultTitle"></h2><p class="result-text" id="resultText"></p>
+<button onclick="shareResult()">Share Our Result 🔗</button><button class="secondary" onclick="restart()">Try Another Quiz ↻</button>
+<p class="small">Made for fun and entertainment 💕</p>
+</section>
+</div>
+
+<section class="info" id="about"><div class="info-card"><h2>About BestieMatch</h2><p>BestieMatch is a free entertainment quiz designed to give friends a playful way to compare their answers and get a fun friendship vibe.</p><p>The percentage is generated from the quiz answers and is not a scientific measurement of friendship, personality, or compatibility.</p></div></section>
+<section class="info" id="faq"><div class="info-card"><h2>Frequently Asked Questions</h2>
+<p><b>Is BestieMatch free?</b><br>Yes. The quiz itself is free to use.</p>
+<p><b>Do I need an account?</b><br>No. You can enter names and play directly.</p>
+<p><b>Is the score scientifically accurate?</b><br>No. It is an entertainment score based on the selected answers.</p>
+<p><b>Can I share my result?</b><br>Yes. Use the Share Result button after finishing.</p>
+<p><b>How can this website make money?</b><br>Once you have visitors, you can apply to suitable advertising or other monetization programs that accept your site. Add any required privacy, cookie, and advertising disclosures before monetizing.</p>
+</div></section>
+</main>
+
+<footer>© 2026 BestieMatch · Made with 💕 for fun</footer>
+
+<script>
+const questions=[
+{q:"Who is more likely to send a random meme at 2 AM? 😂",a:[["Definitely me",10],["Definitely my friend",10],["Both of us 😭",9],["Neither of us",5]]},
+{q:"Your friend says: “I have a secret…” What do you do?",a:[["Tell me EVERYTHING 👀",10],["Wait patiently",8],["Guess the secret 😂",7],["Pretend I didn't hear it",5]]},
+{q:"You both get lost while going somewhere. What happens?",a:[["We laugh and figure it out 😂",10],["One becomes the navigator",8],["We argue about Google Maps 😭",7],["We panic together",6]]},
+{q:"Who would survive longer without checking their phone? 📱",a:[["Me 😎",8],["My friend",8],["Neither of us 😂",10],["We would need a support group",9]]},
+{q:"Your friend posts an embarrassing photo of you. Your reaction?",a:[["Post one back 😈",9],["Laugh about it",10],["Beg them to delete it 😭",7],["Plan revenge quietly",8]]},
+{q:"You have only one slice of pizza left. 🍕 What happens?",a:[["We split it fairly 🫶",10],["I give it to my friend",9],["Rock-paper-scissors!",8],["May the fastest person win 😂",7]]},
+{q:"How often do you two laugh at jokes that make absolutely NO sense?",a:[["Every single time 🤣",10],["Very often",9],["Sometimes",7],["Rarely",5]]},
+{q:"If your friend suddenly says “Let's go on an adventure!”, you say…",a:[["LET'S GO! 🚀",10],["Where are we going?",9],["I'll come if there's food 😂",8],["Maybe next time",5]]},
+{q:"Your friend is having a terrible day. What would you most likely do?",a:[["Listen and support them 💗",10],["Send funny videos 😂",9],["Bring snacks 🍟",9],["Give them some space",7]]},
+{q:"How good are you at remembering your friend's favorite things?",a:[["I remember EVERYTHING 👀",10],["Most things",8],["Only the important stuff",7],["Please don't quiz me 😭",5]]},
+{q:"You disagree about where to eat. What happens?",a:[["We find a place we both like 🤝",10],["Take turns choosing",9],["Debate for 20 minutes 😂",8],["Someone says 'fine, whatever'",6]]},
+{q:"If you two became a comedy duo, what would your style be?",a:[["Chaotic and hilarious 🤣",10],["Cute and silly",9],["Dry humor specialists 😎",8],["We would just laugh at each other",10]]}
+];
+let names=["You","Friend"];
+function startQuiz(){const a=document.getElementById("name1").value.trim(),b=document.getElementById("name2").value.trim();if(!a||!b){alert("Please enter both names 💕");return}names=[a,b];document.getElementById("startCard").classList.add("hidden");document.getElementById("quizCard").classList.remove("hidden");renderQuestions();scrollTo(0,0)}
+function renderQuestions(){document.getElementById("questions").innerHTML=questions.map((x,i)=>`<div class="question"><h3>${i+1}. ${x.q}</h3>${x.a.map(y=>`<label class="option"><input type="radio" name="q${i}" value="${y[1]}">${y[0]}</label>`).join("")}</div>`).join("");updateProgress()}
+function updateProgress(){const n=document.querySelectorAll('input[type="radio"]:checked').length;document.getElementById("progress").style.width=(n/questions.length*100)+"%";document.getElementById("progressText").textContent=n+"/"+questions.length}
+document.addEventListener("change",e=>{if(e.target.type==="radio")updateProgress()});
+function calculateResult(){let total=0;for(let i=0;i<questions.length;i++){const s=document.querySelector(`input[name="q${i}"]:checked`);if(!s){document.getElementById("error").textContent="💗 Answer every question to reveal your result!";document.querySelectorAll(".question")[i].scrollIntoView({behavior:"smooth",block:"center"});return}total+=Number(s.value)}const p=Math.round(total/(questions.length*10)*100);let emoji,title,text;if(p>=90){emoji="💖";title="Bestie Soulmates!";text=`${names[0]} and ${names[1]} have a seriously fun friendship vibe! Your answers show strong support, communication and lots of shared fun.`}else if(p>=75){emoji="😍";title="Perfectly In Sync!";text=`${names[0]} and ${names[1]} seem to understand each other really well. Keep laughing, supporting and making memories together!`}else if(p>=60){emoji="😊";title="Sweet Friendship!";text=`${names[0]} and ${names[1]} have a lovely friendship foundation. You have plenty of good vibes to build on!`}else{emoji="🌱";title="Friendship in Bloom!";text=`${names[0]} and ${names[1]} have room to discover more about each other. More conversations and shared moments can make the friendship even more fun!`}document.getElementById("quizCard").classList.add("hidden");document.getElementById("resultCard").classList.remove("hidden");document.getElementById("emoji").textContent=emoji;document.getElementById("names").textContent=names[0]+" × "+names[1];document.getElementById("score").textContent=p+"%";document.getElementById("resultTitle").textContent=title;document.getElementById("resultText").textContent=text;setTimeout(()=>document.getElementById("fill").style.width=p+"%",100);scrollTo(0,0)}
+function shareResult(){const t=`💕 ${names[0]} & ${names[1]} got ${document.getElementById("score").textContent} on BestieMatch! ${document.getElementById("resultTitle").textContent} 🎉`;if(navigator.share)navigator.share({title:"BestieMatch 💕",text:t}).catch(()=>{});else if(navigator.clipboard){navigator.clipboard.writeText(t);alert("Result copied! 🎉")}else alert(t)}
+function restart(){document.getElementById("resultCard").classList.add("hidden");document.getElementById("quizCard").classList.add("hidden");document.getElementById("startCard").classList.remove("hidden");document.getElementById("fill").style.width="0";document.getElementById("error").textContent="";document.getElementById("name1").value="";document.getElementById("name2").value="";scrollTo(0,0)}
+</script>
+</body>
+</html>
